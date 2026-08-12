@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parch-grub-fixer"
+version = "1.0.0"
+description = "Detect Parch Linux installations and repair GRUB or perform a full system upgrade"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPL-3.0-or-later" }
+authors = [
+    { name = "Parch Linux Team" },
+]
+keywords = ["parch", "arch", "grub", "bootloader", "recovery"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Boot",
+    "Topic :: System :: Systems Administration",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+dependencies = [
+    "rich>=12.0",
+]
+
+[project.scripts]
+parch-grub-fixer = "parch_grub_fixer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
