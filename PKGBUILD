@@ -1,4 +1,4 @@
-# Maintainer: Parch Linux Team <parchlinux@gmail.com>
+# Maintainer: Parch Linux Team
 pkgname=parch-grub-fixer
 pkgver=1.0.0
 pkgrel=1
