@@ -25,8 +25,14 @@ dependencies = [
     "rich>=12.0",
 ]
 
+[project.optional-dependencies]
+gui = ["PyGObject>=3.42"]
+
 [project.scripts]
 parch-grub-fixer = "parch_grub_fixer.cli:main"
+
+[project.gui-scripts]
+parch-grub-fixer-gui = "parch_grub_fixer.gui:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
