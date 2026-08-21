@@ -205,7 +205,6 @@ class MainWindow(Adw.ApplicationWindow):
         content.set_margin_end(12)
 
         self._run_banner = Adw.Banner()
-        self._run_banner.set_show_close_button(True)
         self._run_banner.set_revealed(False)
         content.append(self._run_banner)
 
