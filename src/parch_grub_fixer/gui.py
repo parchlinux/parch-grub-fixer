@@ -82,6 +82,7 @@ class MainWindow(Adw.ApplicationWindow):
 
         self._systems = []
         self._system_radios = []
+        self._system_rows = []
         self._action_radios = []
         self._worker = None
         self._original_console_file = cli_console._file
@@ -156,7 +157,7 @@ class MainWindow(Adw.ApplicationWindow):
         action_group = Adw.PreferencesGroup(title="Action")
         radio = None
         for value, title, subtitle in ACTION_CHOICES:
-            radio = self._add_radio_row(action_group, radio, title, subtitle, self._on_action_toggled, value)
+            radio, _ = self._add_radio_row(action_group, radio, title, subtitle, self._on_action_toggled, value)
             self._action_radios.append((radio, value))
         content.append(action_group)
 
@@ -221,7 +222,7 @@ class MainWindow(Adw.ApplicationWindow):
         row.add_prefix(check)
         row.set_activatable_widget(check)
         group.add(row)
-        return check
+        return check, row
 
     # Scan flow
 
@@ -262,12 +263,13 @@ class MainWindow(Adw.ApplicationWindow):
     def _populate_systems(self, systems):
         self._systems = systems
         self._system_radios.clear()
-        while child := self._system_group.get_first_child():
-            self._system_group.remove(child)
+        for row in self._system_rows:
+            self._system_group.remove(row)
+        self._system_rows.clear()
 
         radio = None
         for system in systems:
-            radio = self._add_radio_row(
+            radio, row = self._add_radio_row(
                 self._system_group,
                 radio,
                 system["device"],
@@ -276,6 +278,7 @@ class MainWindow(Adw.ApplicationWindow):
                 system,
             )
             self._system_radios.append((radio, system))
+            self._system_rows.append(row)
 
     # Selection helpers
 
